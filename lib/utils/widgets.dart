@@ -1,7 +1,7 @@
-import 'package:dogiee/utils/const.dart';
 import 'package:flutter/material.dart';
 
-Widget postContainer(BuildContext context,String text,{Widget? child}){
+Widget postContainer(BuildContext context, String text,
+    {Widget? child, String? name, String? lifeSpan}) {
   return Container(
     margin: const EdgeInsets.fromLTRB(15, 15, 15, 10),
     decoration: BoxDecoration(
@@ -13,22 +13,47 @@ Widget postContainer(BuildContext context,String text,{Widget? child}){
         ),
       ],
     ),
-    height: MediaQuery.of(context).size.height * 0.4,
+    height: MediaQuery.of(context).size.height * 0.35,
     child: Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
           height: MediaQuery.of(context).size.height * 0.22,
           width: double.infinity,
           decoration: BoxDecoration(
-            // color: kblack.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(10),
+            // color: Colors.red,
+            borderRadius: BorderRadius.circular(15),
           ),
-         alignment: Alignment.topLeft,
-         child: child,
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width * 0.45,
+                decoration: BoxDecoration(
+                  // color: Colors.red,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: child,
+              ),
+              const SizedBox(width: 15),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("Name: $name",
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text("Life-Span: $lifeSpan",
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w400))
+                ],
+              )
+            ],
+          ),
         ),
         const SizedBox(height: 10),
-        Text(text)
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Text(text),
+        )
       ],
     ),
   );
